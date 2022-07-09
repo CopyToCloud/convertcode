@@ -18,7 +18,7 @@
             if (params.state && params.code) {
                 var r = /(\d+):(\S+)/.exec(params.state)
                 if (r[1] === '1') {
-                    location.replace("https://t.me/CopyToCloud?start=" + r[2] + ':' + params.code)
+                    location.replace("https://t.me/CopyToCloudBot?start=" + r[2] + ':' + params.code)
                 }
             }
         }
