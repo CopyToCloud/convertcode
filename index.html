@@ -9,15 +9,28 @@
 </head>
 
 <body>
-    One moment...
+    <span>One moment...</span>
     <script>
         function check() {
             var urlSearchParams = new URLSearchParams(window.location.search),
                 params = Object.fromEntries(urlSearchParams.entries());
 
-            if (params.state && params.code) {
-                var r = /(\d+):(\S+)/.exec(params.state)
-                if (r[1] === '1') {
+            if (params.state) {
+                if (params.error) {
+                    document.querySelector("span").innerHTML = params.error_description
+                        ? params.error_description
+                        : params.error;
+                    return;
+                }
+
+                if (!params.code) {
+                    return
+                }
+
+                var state = atob(params.state),
+                    r = /(\d+):(\S+)/.exec(state);
+                    
+                if (r && r[1] === '1') {
                     var data = btoa(r[2] + ':' + params.code);
                     location.replace("https://t.me/CopyToCloudBot?start=" + data)
                 }
