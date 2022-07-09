@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CopyToCloud</title>
+</head>
+
+<body>
+    One moment...
+    <script>
+        function check() {
+            var urlSearchParams = new URLSearchParams(window.location.search),
+                params = Object.fromEntries(urlSearchParams.entries());
+
+            if (params.state && params.code) {
+                var r = /(\d+):(\S+)/.exec(params.state)
+                if (r[1] === '1') {
+                    location.replace("https://t.me/CopyToCloud?start=" + r[2] + ':' + params.code)
+                }
+            }
+        }
+        check();
+    </script>
+</body>
+
+</html>
